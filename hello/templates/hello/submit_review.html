@@ -1,0 +1,17 @@
+{% extends "hello/layout.html" %}
+
+{% block title %}
+Submit a Review
+{% endblock %}
+
+{% block content %}
+    <h2>Share Your Cosmetic Experience</h2>
+
+    <p>Help others by reviewing your favorite (or least favorite) cosmetic products.</p>
+
+    <form method="POST" class="review-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Submit Review</button>
+    </form>
+{% endblock %}
