@@ -1,0 +1,43 @@
+{% extends "hello/layout.html" %}
+
+{% block content %}
+<div class="product-page" style="padding: 20px;">
+    <a href="{% url 'home' %}" style="text-decoration: none; color: #666;">← Back to Collection</a>
+    
+    <div style="display: flex; gap: 40px; margin-top: 20px;">
+        <div style="flex: 1;">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 100%; border-radius: 10px;">
+        </div>
+
+        <div style="flex: 1;">
+            <h1>{{ product.name }}</h1>
+            <h2 style="color: #d4a373;">${{ product.price }}</h2>
+            <p>{{ product.description }}</p>
+
+            <hr>
+            
+            <h3>Customer Reviews</h3>
+            {% for feedback in feedbacks %}
+                <div style="background: #f9f9f9; padding: 10px; margin-bottom: 10px; border-radius: 5px;">
+                    <strong>Rating: {{ feedback.rating }}/5</strong>
+                    <p>{{ feedback.comment }}</p>
+                    <small style="color: gray;">Posted on: {{ feedback.created_at }}</small>
+                </div>
+            {% empty %}
+                <p>No reviews yet for this product. Be the first to leave one!</p>
+            {% endfor %}
+
+            <hr>
+
+            <h3>Leave a Review</h3>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" style="background: #333; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+                    Submit Review
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
