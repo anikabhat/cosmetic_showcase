@@ -1,32 +1,18 @@
 {% extends "hello/layout.html" %}
-{% block title %}
-Home
-{% endblock %}
 {% block content %}
-    <h2>Submitted Reviews</h2>
-
-    {% if submit_review_list %}
-        <table class="review_list">
-            <thead>
-            <tr>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Review</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for review in review_list %}
-            <tr>
-                <td>{{ review.log_date | date:'d M Y' }}</td>
-                <td>{{ review.log_date | time:'H:i:s' }}</td>
-                <td>
-                    {{ review.message }}
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-{% else %}
-    <p>No reviews yet. Be the first to share your experience with cosmetic products! <a href="{% url 'submit_review' %}">Review form</a>.</p>
-{% endif %}
+<h2>Our Cosmetics Collection</h2>
+<div class="product-grid">
+    {% for product in product_list %}
+        <div class="product-card">
+            {% if product.image %}
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 200px;">
+            {% endif %}
+            <h3>{{ product.name }}</h3>
+            <p>${{ product.price }}</p>
+            <a href="{% url 'product_detail' product.id %}">View Details & Reviews</a>
+        </div>
+    {% empty %}
+        <p>No products added yet. Log in to the <a href="/admin">Admin Panel</a> to add some!</p>
+    {% endfor %}
+</div>
 {% endblock %}
