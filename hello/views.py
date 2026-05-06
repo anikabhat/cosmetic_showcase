@@ -51,7 +51,7 @@ def contact(request):
 
 
 
-
+# Contact #
 def contact(request):
     if request.method == "POST":
         form = ContactForm(request.POST)
