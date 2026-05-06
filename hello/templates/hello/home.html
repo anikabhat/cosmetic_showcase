@@ -1,7 +1,8 @@
 {% extends "hello/layout.html" %}
-{% block content %}
-<h2>Our Cosmetics Collection</h2>
-<div class="product-grid">
+{% block content %} 
+<h2>Our Trending Cosmetic and Skincare Picks!</h2>
+<p>Check back for new additions and more trending reviews</p>
+<div class="product-grid"> <!--Organize products-->
     {% for product in product_list %}
         <div class="product-card">
             {% if product.image %}
@@ -11,8 +12,8 @@
             <p>${{ product.price }}</p>
             <a href="{% url 'product_detail' product.id %}">View Details & Reviews</a>
         </div>
-    {% empty %}
-        <p>No products added yet. Log in to the <a href="/admin">Admin Panel</a> to add some!</p>
+    {% empty %} 
+        <p>No products added yet. Log in to the <a href="/admin">Admin Portal</a> to add some!</p> <!--Provide way to add products-->
     {% endfor %}
 </div>
 {% endblock %}

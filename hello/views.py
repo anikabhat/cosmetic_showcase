@@ -2,8 +2,12 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView
 from .models import Product, Feedback
 from .forms import FeedbackForm
+from .forms import ContactForm
+from django.contrib import messages
+from django.contrib.admin.views.decorators import staff_member_required
+from .models import Feedback, ContactMessage
 
-# Homepage: Product List (Minimum 8 products)
+# Homepage: Product List (8 products)
 class HomeListView(ListView):
     model = Product
     template_name = "hello/home.html"
@@ -31,12 +35,32 @@ def product_detail(request, pk):
     })
 
 # Admin-only Report
+@staff_member_required
 def feedback_report(request):
+    # This gathers every review from every product into one list
     all_feedback = Feedback.objects.all().order_by('-created_at')
-    return render(request, "hello/feedback_report.html", {"all_feedback": all_feedback})
+    return render(request, "hello/feedback_report.html", {
+        "all_feedback": all_feedback
+    })
 
 def about(request):
     return render(request, "hello/about.html")
 
 def contact(request):
     return render(request, "hello/contact.html")
+
+
+
+
+def contact(request):
+    if request.method == "POST":
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Your message has been sent! We will look into adding those products.")
+            return redirect("contact")
+    else:
+        form = ContactForm()
+    return render(request, "hello/contact.html", {"form": form})
+
+

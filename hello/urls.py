@@ -7,4 +7,5 @@ urlpatterns = [
     path("report/", views.feedback_report, name="feedback_report"),
     path("about/", views.about, name="about"),
     path("contact/", views.contact, name="contact"),
+    path("feedback-report/", views.feedback_report, name="feedback_report"),
 ]

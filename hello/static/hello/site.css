@@ -3,15 +3,15 @@
     color: blue;
 }
 .navbar {
-    background-color: grey;
+    background-color: pink;
     font-size: 1em;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    color: white;
+    color: black;
     padding: 8px 5px 8px 5px;
 }
 .navbar a {
     text-decoration: none;
-    color: inherit;
+    color: black;
 }
 .navbar-brand {
     font-size: 1.2em;
@@ -19,7 +19,7 @@
 }
 .navbar-item {
     font-variant: small-caps;
-margin-left: 30px;
+    margin-left: 30px;
 }
 .body-content {
     padding: 5px;
@@ -52,6 +52,7 @@ input[name=message] {
     transition: transform 0.2s;
 }
 
+/*Highlight each box on hover */
 .product-card:hover {
     transform: scale(1.03);
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);

@@ -11,12 +11,12 @@
 
         <div style="flex: 1;">
             <h1>{{ product.name }}</h1>
-            <h2 style="color: #d4a373;">${{ product.price }}</h2>
+            <h2 style="color: lightcoral;">${{ product.price }}</h2>
             <p>{{ product.description }}</p>
 
             <hr>
             
-            <h3>Customer Reviews</h3>
+            <h3>Customer Reviews</h3> <!--List customer reviews in blog style-->
             {% for feedback in feedbacks %}
                 <div style="background: #f9f9f9; padding: 10px; margin-bottom: 10px; border-radius: 5px;">
                     <strong>Rating: {{ feedback.rating }}/5</strong>
